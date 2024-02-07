@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario CFF</title>
+</head>
+<body>
+
+    <fieldset>
+        <legend><h1>Formulario de Inscripción/Modificación</h1></legend>
+        <form th:object="${estudiante}" th:action="@{/persistir}" method="post">
+            <!-- Campo oculto para guardar el id -->
+            <input type="hidden" th:field="*{id}">
+
+            <fieldset>
+                <legend><h3>Datos Personales</h3></legend>
+
+                <label for="nombre">Nombre: </label>
+                <input type="text" id="nombre" th:field="*{nombre}">
+
+                <label for="apellidos">Apellidos: </label>
+                <input type="text" id="apellidos" th:field="*{apellidos}">
+
+                <legend>Género: </legend>
+                <label for="hombre">Hombre</label>
+                <input type="radio" name="genero" id="hombre" value="HOMBRE" th:field="*{genero}">
+                <label for="mujer">Mujer</label>
+                <input type="radio" name="genero" id="mujer" value="MUJER" th:field="*{genero}">
+                <label for="otro">Otro</label>
+                <input type="radio" name="genero" id="otro" value="OTRO" th:field="*{genero}">
+                
+            </fieldset>
+
+            <fieldset> 
+
+                <legend><h3>Curso</h3></legend>
+                
+                <!-- Pedir el curso -->
+                <label for="curso">Curso</label>
+                <select name="curso" id="curso">
+                    <option></option>
+                    <option th:each=" curso: ${cursos}"
+                        th:value="${curso.id}"
+                        th:text="${curso.descripcion}"
+                        th:selected = "${estudiante.id != 0 and estudiante.curso.id == curso.id}">
+                    </option>
+
+                </select>
+    
+                <label for="fechaMatriculacion">Fecha de Matriculación: </label>
+                <input type="date" id="fechaMatriculacion" th:field="*{fechaMatriculacion}">
+
+                <label for="totalAsignaturas">Total de Asignaturas Matriculadas: </label>
+                <input type="text" id="totalAsignaturas" th:field="*{totalAsignaturas}">
+
+            </fieldset>
+ 
+
+            <fieldset>
+                <legend><h3>Datos de contacto</h3></legend>
+            <!-- Pedir el teléfono -->
+            <label for="telefonos">Teléfono</label>
+            <input type="text" id="telefonos" name="tlf"
+                placeholder="uno o varios, separados por ;"
+                    th:value="${numerosDeTelefono}">
+
+            <!-- Pedir el correo -->
+            <label for="correos">Correos</label>
+            <input type="text" id="correos" name="mails"
+                placeholder="-uno o varios, separados por ;"
+                    th:value="${direccionesDeCorreo}">
+            
+            </fieldset>
+
+            <input type="submit" value="Inscripción/Modificación">
+        </form>
+    </fieldset>
+
+</body>
+</html>

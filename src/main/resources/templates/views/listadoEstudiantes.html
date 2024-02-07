@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home CFF</title>
+</head>
+<body>
+
+        
+    <h1>CRUD de Estudiantes Centro de Formación Ficticio</h1>
+    <h3>#Spring #MVC #JPA #Thymeleaf</h3>
+
+
+    <h3>Lista de Estudiantes</h3>
+
+    <table>
+        <thead>
+            <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each=" estudiante : ${estudiantes}">
+            <td th:text="${estudiante.nombre}"></td>
+            <td th:text="${estudiante.apellidos}"></td>
+            <td>
+                
+            <a th:href="@{/detalles/}+${estudiante.id}">Detalles</a>
+            <a th:href="@{/update/}+${estudiante.id}">Modificación</a>
+            <a th:href="@{/delete/}+${estudiante.id}">Eliminar</a>
+        
+        </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div>
+        <a th:href="@{/frmAltaModif}">Formulario de Inscripción</a>
+        <a th:href="@{/listadoHorarioMananas}">Listado Horario de Mañanas</a>
+        <a th:href="@{/listadoEstudiantesCurso}">Listado de Estudiantes por Curso</a>
+    </div>
+
+
+
+    
+</body>
+</html>

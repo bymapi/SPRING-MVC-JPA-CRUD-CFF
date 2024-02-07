@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles</title>
+</head>
+
+<body>
+    <h1 th:text="'Detalles sobre '+${estudiante.nombre}"></h1>
+    <input type="hidden" th:field="*{id}">
+
+    <fieldset>
+                <tr>
+                    <th><h5>Nombre:</h5></th>
+                    <td th:text="${estudiante.nombre}"></td>
+                    <th><h5>Apellidos:</h5></th>
+                    <td th:text="${estudiante.apellidos}"></td>
+                    <th><h5>Género:</h5></th>
+                    <td th:text="${estudiante.genero}"></td>
+                    <!-- <td th:text="${estudiante.correos.correo}"></td> -->
+                    </tr>
+
+                <tr>
+                </tr>
+                    <th><h5>Curso:</h5></th>
+                    <td th:text="${estudiante.curso.id}"></td>
+                    <th><h5>Horario:</h5></th>
+                    <td th:text="${estudiante.curso.horario}"></td>
+                    <th><h5>Fecha de Matriculación:</h5></th>
+                    <td th:text="${estudiante.fechaMatriculacion}"></td>
+                    <th><h5>Total de Asignaturas: </h5></th>
+                    <td th:text="${estudiante.totalAsignaturas}"></td>
+
+
+    </fieldset>
+
+</body>
+</html>
