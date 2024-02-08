@@ -47,7 +47,7 @@ public class Estudiante implements Serializable {
     @Enumerated(EnumType.STRING)
     private Genero genero;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private Curso curso;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "estudiante")
@@ -56,12 +56,6 @@ public class Estudiante implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "estudiante")
     private List<Correo> correos;
 
-
-    // public Estudiante(String nombre, Curso curso) {
-    // this.nombre = nombre;
-    // this.curso = curso;
-    
-    // }
 }
 
 

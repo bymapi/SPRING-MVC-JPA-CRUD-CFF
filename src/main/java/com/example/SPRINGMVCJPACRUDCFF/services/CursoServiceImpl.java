@@ -36,12 +36,12 @@ public class CursoServiceImpl implements CursoService{
         cursoDao.save(curso);
     }
 
-    @Override
-    public List<Curso> horarioDiurno(Horario horario) {
+    // @Override
+    // public List<Curso> horarioDiurno(Horario horario) {
         
-        return cursoDao.findByHorario(horario);
+    //     return cursoDao.findByHorario(horario);
 
-    }
+    // }
 
 
 
