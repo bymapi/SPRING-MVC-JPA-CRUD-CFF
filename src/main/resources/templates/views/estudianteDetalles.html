@@ -11,6 +11,8 @@
     <input type="hidden" th:field="*{id}">
 
     <fieldset>
+        <img th:src="@{/images/}+${estudiante.nombreFoto}" alt="Foto de perfil"
+        height="10%" width="10%">
                 <tr>
                     <th><h5>Nombre:</h5></th>
                     <td th:text="${estudiante.nombre}"></td>
@@ -18,8 +20,6 @@
                     <td th:text="${estudiante.apellidos}"></td>
                     <th><h5>Género:</h5></th>
                     <td th:text="${estudiante.genero}"></td>
-                    <img th:src="@{/images/}+${estudiante.nombreFoto}" alt="Foto de perfil"
-                                height="10%" width="10%">
                     </tr>
 
                 <tr>

@@ -7,8 +7,11 @@
 </head>
 <body>
 
+    <H1>Alumnado en Horario de Mañanas</H1>
+
     <ul th:each=" estudiante : ${estudiantesDiurnos}">
         <li th:text="${estudiante.nombre}"></li>
+        <li th:text="${estudiante.apellidos}"></li>
 
     </ul>  
  
