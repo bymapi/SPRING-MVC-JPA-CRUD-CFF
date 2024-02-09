@@ -230,7 +230,8 @@ public class MainController {
     @GetMapping("/listadoHorarioMananas")
     public String listadoHorarioMananas (Model model) {
         
-        List<Estudiante> estudiantesDiurnos = estudianteService.dameTodosLosEstudiantes().stream().filter(e -> e.getCurso().getHorario().
+        List<Estudiante> estudiantesDiurnos = estudianteService.dameTodosLosEstudiantes().stream().
+        filter(e -> e.getCurso().getHorario().
         equals(Horario.DIURNO)).collect(Collectors.toList());
 
         model.addAttribute("estudiantesDiurnos", estudiantesDiurnos);
