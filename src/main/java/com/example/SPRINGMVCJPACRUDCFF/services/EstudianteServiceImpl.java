@@ -56,11 +56,5 @@ public class EstudianteServiceImpl implements EstudianteService {
         return estudianteDao.findByCurso(cursoDao.findById(idCurso).get());
     }
 
-    
-    // @Override
-    // public List<Estudiante> estudiantesPorHorario(Horario horario) {
-        
-    //     // return estudianteDao.findByHorario(cursoDao.findByHorario(horario));
-    // }
 
 }

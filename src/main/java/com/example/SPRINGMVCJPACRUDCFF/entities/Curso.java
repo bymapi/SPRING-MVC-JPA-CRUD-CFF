@@ -14,15 +14,19 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "cursos")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class Curso {
 
     @Id
@@ -35,10 +39,6 @@ public class Curso {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "curso")
     private List<Estudiante> estudiantes;
 
-
-    public Curso(String descripcion, Horario horario) {
-        this.descripcion = descripcion;
-        this.horario = horario;
-        }
+    
 
 }

@@ -9,7 +9,7 @@
 
     <fieldset>
         <legend><h1>Formulario de Inscripción/Modificación</h1></legend>
-        <form th:object="${estudiante}" th:action="@{/persistir}" method="post">
+        <form th:object="${estudiante}" th:action="@{/persistir}" method="post" enctype="multipart/form-data">
             <!-- Campo oculto para guardar el id -->
             <input type="hidden" th:field="*{id}">
 
@@ -73,6 +73,7 @@
             
             </fieldset>
 
+            <input type="file" name="file">
             <input type="submit" value="Inscripción/Modificación">
         </form>
     </fieldset>

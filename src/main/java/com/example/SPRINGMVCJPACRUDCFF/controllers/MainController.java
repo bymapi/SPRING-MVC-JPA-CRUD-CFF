@@ -1,8 +1,12 @@
 package com.example.SPRINGMVCJPACRUDCFF.controllers;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.SPRINGMVCJPACRUDCFF.entities.Correo;
 import com.example.SPRINGMVCJPACRUDCFF.entities.Curso;
@@ -72,7 +77,32 @@ public class MainController {
     @Transactional
     public String persistirEstudiante(@ModelAttribute(name = "estudiante") Estudiante estudiante,
         @RequestParam(name="tlf", required = false) String telefonosRecibidos,
-        @RequestParam(name="mails", required = false) String correosRecibidos){
+        @RequestParam(name="mails", required = false) String correosRecibidos,
+        @RequestParam(name = "file", required = false) MultipartFile imagen){
+        
+        //Comprobamos si se ha recibido un archivo de imagen
+        if(!imagen.isEmpty()){
+
+        Path imageFolder =Path.of("src/main/resources/static/images");    
+
+        Path rutaAbsoluta= imageFolder.toAbsolutePath();
+
+
+        Path rutaCompleta = Path.of(rutaAbsoluta + "/" + imagen.getOriginalFilename());
+
+        try {
+                byte[] bytesImage = imagen.getBytes();
+                Files.write(rutaCompleta, bytesImage);
+
+                estudiante.setNombreFoto(imagen.getOriginalFilename());
+                
+            } catch (IOException e) {
+               
+            }
+
+    }
+       
+
 
         // Procesar los teléfonos
         
@@ -196,20 +226,15 @@ public class MainController {
 
     // Punto 8. Mostrar, mediante un link en la vista, listado de alumnos matriculados en horario de mañana.
 
-    // public List<Estudiante> filtrarPorHorario(Horario horario) {
-    //     List<Estudiante> filtrados = new ArrayList<>();
-    //         for (Estudiante e : estudianteService.dameTodosLosEstudiantes()) {
-    //         if (e.getCurso().getHorario() == horario) {
-    //         filtrados.add(e);
-    //         }
-    //      }
-    //         return filtrados;
-    // }
 
     @GetMapping("/listadoHorarioMananas")
     public String listadoHorarioMananas (Model model) {
         
-        // model.addAttribute("estudiantes", cursoService.horarioDiurno(null));
+        List<Estudiante> estudiantesDiurnos = estudianteService.dameTodosLosEstudiantes().stream().filter(e -> e.getCurso().getHorario().
+        equals(Horario.DIURNO)).collect(Collectors.toList());
+
+        model.addAttribute("estudiantesDiurnos", estudiantesDiurnos);
+        
         return "views/listadoHorarioMananas";
 
     }
@@ -217,7 +242,13 @@ public class MainController {
 
     // Punto 9. Mostrar, mediante un link en la vista, listado de alumnos agrupados por curso.
     @GetMapping("/listadoEstudiantesCurso")
-    public String listadoEstudiantesCurso (Model model){
+    public String listadoEstCurso (Model model){
+
+        Map<Curso,List<Estudiante>> estudiantesGrupoCurso = estudianteService.dameTodosLosEstudiantes()
+        .stream().collect(Collectors.groupingBy(Estudiante::getCurso));  
+
+        model.addAttribute("estudiantesGrupoCurso", estudiantesGrupoCurso);
+
 
         return "views/listadoEstudiantesCurso";
     }

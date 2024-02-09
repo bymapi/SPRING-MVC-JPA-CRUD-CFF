@@ -3,7 +3,7 @@ package com.example.SPRINGMVCJPACRUDCFF.services;
 import java.util.List;
 
 import com.example.SPRINGMVCJPACRUDCFF.entities.Curso;
-import com.example.SPRINGMVCJPACRUDCFF.entities.Horario;
+// import com.example.SPRINGMVCJPACRUDCFF.entities.Horario;
 public interface CursoService {
 
     public List<Curso> dameCursos();

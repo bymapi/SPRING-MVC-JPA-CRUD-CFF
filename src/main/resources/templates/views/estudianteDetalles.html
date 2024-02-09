@@ -18,7 +18,8 @@
                     <td th:text="${estudiante.apellidos}"></td>
                     <th><h5>Género:</h5></th>
                     <td th:text="${estudiante.genero}"></td>
-                    <!-- <td th:text="${estudiante.correos.correo}"></td> -->
+                    <img th:src="@{/images/}+${estudiante.nombreFoto}" alt="Foto de perfil"
+                                height="10%" width="10%">
                     </tr>
 
                 <tr>

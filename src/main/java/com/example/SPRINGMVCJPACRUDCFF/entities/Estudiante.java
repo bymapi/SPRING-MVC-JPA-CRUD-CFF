@@ -20,14 +20,19 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "estudiantes")
-@Data
+@Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class Estudiante implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -42,12 +47,12 @@ public class Estudiante implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaMatriculacion;
     private int totalAsignaturas;
-    private String foto;
+    private String nombreFoto;
 
     @Enumerated(EnumType.STRING)
     private Genero genero;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     private Curso curso;
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "estudiante")

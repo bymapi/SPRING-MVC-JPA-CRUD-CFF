@@ -1,4 +1,4 @@
-package com.example.SPRINGMVCJPACRUDCFF.services;
+ package com.example.SPRINGMVCJPACRUDCFF.services;
 
 import java.util.List;
 
@@ -12,3 +12,4 @@ public interface CorreoService {
     public void actualizarCorreo(int idEstudiante, Correo correo);
 
 }
+ 
